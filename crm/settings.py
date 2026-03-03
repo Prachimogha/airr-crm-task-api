@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',   # correct spelling
     'django_filters',
-    'drf_yasg',                   # correct spelling
+                      # correct spelling
     'taskapp',                     # your app
 ]
 
