@@ -1,24 +1,25 @@
-from django.test import TestCase
+from rest_framework.test import APITestCase
 from django.contrib.auth.models import User
-from .models import Task, Category
+from django.urls import reverse
+from .models import Category
 
-class TaskModelTest(TestCase):
+class TaskAPITest(APITestCase):
 
-    def test_task_creation(self):
-        user = User.objects.create_user(
-            username="testuser",
+    def setUp(self):
+        self.user = User.objects.create_user(
+            username="apiuser",
             password="testpass123"
         )
+        self.category = Category.objects.create(name="Work")
+        self.client.login(username="apiuser", password="testpass123")
 
-        category = Category.objects.create(name="Work")
+    def test_create_task_api(self):
+        url = reverse("task-list")  # make sure your router name matches
+        data = {
+            "title": "API Task",
+            "description": "API Test",
+            "category": self.category.id
+        }
 
-        task = Task.objects.create(
-            title="Test Task",
-            description="Test Description",
-            category=category,
-            user=user
-        )
-
-        self.assertEqual(task.title, "Test Task")
-        self.assertEqual(task.category.name, "Work")
-        self.assertEqual(task.user.username, "testuser")
+        response = self.client.post(url, data)
+        self.assertEqual(response.status_code, 201)
