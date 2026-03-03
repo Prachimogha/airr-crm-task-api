@@ -1,14 +1,32 @@
-# Airr CRM Task API
+# AIRR CRM Task API
 
-A Django REST framework project for managing tasks with JWT authentication.
+This is a Django REST API for managing tasks.
 
-## Installation
-```bash
-git clone https://github.com/Prachimogha/airr-crm-task-api.git
-cd airr-crm-task-api
-python -m venv venv
-venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-python manage.py migrate
-python manage.py createsuperuser
-python manage.py runserver
+## Features
+- Create Task
+- View Task
+- Update Task
+- Delete Task
+- Django REST Framework
+- CI/CD using GitHub Actions
+
+## Tech Stack
+- Python
+- Django
+- Django REST Framework
+- SQLite
+- GitHub Actions
+
+## Setup Instructions
+
+1. Clone the repository
+2. Create virtual environment
+3. Install requirements:
+   pip install -r requirements.txt
+4. Run migrations:
+   python manage.py migrate
+5. Start server:
+   python manage.py runserver
+
+## Run Tests
+python manage.py test
